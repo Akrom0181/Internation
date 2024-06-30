@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+option go_package = "genproto/user_service";
+
+package user_service;
+
+service SupportTeacherService {
+    rpc Create(CreateSupportTeacher) returns (SupportTeacher) {}
+    rpc GetByID(SupportTeacherPrimaryKey) returns (SupportTeacher) {}
+    rpc GetList(GetListSupportTeacherRequest) returns (GetListSupportTeacherResponse) {}
+    rpc Update(UpdateSupportTeacher) returns (SupportTeacher) {}
+    rpc Delete(SupportTeacherPrimaryKey) returns (EmptySTeacher) {}
+    rpc GetReportList(GetReportListSupportTeacherRequest) returns (GetReportListSupportTeacherResponse) {}
+}
+
+message EmptySTeacher{}
+
+message SupportTeacherPrimaryKey {
+    string id = 1;
+}
+
+message CreateSupportTeacher {
+    string login = 1;
+    string fullname = 2;
+    string phone = 3;
+    string password = 4;
+    int32 salary = 5;
+    float ieltsScore = 6;
+    int32 ieltsAttemptCount = 7;
+    string branchId = 8;
+}
+
+message SupportTeacher {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    string password = 5;
+    int32 salary = 6;
+    float ieltsScore = 7;
+    int32 ieltsAttemptCount = 8;
+    string branchId = 9;
+    string created_at = 10;
+    string updated_at = 11;
+    int32 deleted_at = 12;
+}
+
+message UpdateSupportTeacher {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    string password = 5;
+    int32 salary = 6;
+    float ieltsScore = 7;
+    int32 ieltsAttemptCount = 8;
+    string branchId = 9;
+}
+
+message GetSupportTeacher {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    string password = 5;
+    int32 salary = 6;
+    float ieltsScore = 7;
+    int32 ieltsAttemptCount = 8;
+    string branchId = 9;
+    string created_at = 10;
+    string updated_at = 11;
+    int32 deleted_at = 12;
+}
+
+message GetListSupportTeacherRequest {
+    uint64 page = 1;
+    uint64 limit = 2;
+    string search = 3;
+}
+
+message GetListSupportTeacherResponse {
+    int64 count = 1;
+    repeated SupportTeacher supportTeachers = 2;
+}
+
+message GetReportSupportTeacherResponse {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    string password = 5;
+    int64 salary = 6;
+    float ielts_score = 7;
+    int32 ielts_attempt_count = 8;
+    string branch_id = 9;
+    string created_at = 10;
+    string updated_at = 11;
+    string deleted_at = 12;
+    string totalsum=13;
+}
+
+message GetReportListSupportTeacherResponse {
+    int64 Count = 1;
+    repeated GetReportSupportTeacherResponse GetSupportTeachers = 2;
+}
+
+message GetReportListSupportTeacherRequest {
+    int64 page = 1;
+    int64 limit = 2;
+    string search = 3;
+}

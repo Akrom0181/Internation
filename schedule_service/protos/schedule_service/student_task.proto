@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+option go_package = "genproto/schedule_service";
+
+package schedule_service;
+
+service StudentTaskService {
+    rpc Create(CreateStudentTask) returns (GetStudentTask) {}
+    rpc GetByID(StudentTaskPrimaryKey) returns (GetStudentTask) {}
+    rpc GetList(GetListStudentTaskRequest) returns (GetListStudentTaskResponse) {}
+    rpc Update(UpdateStudentTask) returns (GetStudentTask) {}
+    rpc Delete(StudentTaskPrimaryKey) returns (EmptyStudentTask) {}
+    rpc UpdateScoreforTeacher(UpdateStudentScoreRequest) returns (GetStudentTask) {}
+    rpc UpdateScoreforStudent(UpdateStudentScoreRequest) returns (GetStudentTask) {}
+}
+
+message EmptyStudentTask {}
+
+message StudentTaskPrimaryKey {
+    string id = 1;
+}
+
+message CreateStudentTask {
+    string taskId = 2;
+    string studentId = 3;
+}
+
+message StudentTask {
+    string id = 1;
+    string taskId = 2;
+    string studentId = 3;
+    string created_at = 4;
+    string updated_at = 5;
+    int32 deleted_at = 6;
+}
+
+message GetStudentTask {
+    string id = 1;
+    string taskId = 2;
+    string studentId = 3;
+    string created_at = 4;
+    string updated_at = 5;
+    int32 deleted_at = 6;
+}
+
+message UpdateStudentTask {
+    string id = 1;
+    string taskId = 2;
+    string studentId = 3;
+}
+
+message UpdateStudentTaskRequest {
+    string id = 1;
+    string taskId = 2;
+    string studentId = 3;
+    int32 score = 4;
+}
+
+message UpdateStudentScoreRequest {
+    string id = 1;
+    int32 score = 2;
+}
+
+message GetStudentTaskResponse {
+    string id = 1;
+    string taskId = 2;
+    string studentId = 3;
+    int32 score = 4;
+    string created_at = 5;
+    string updated_at = 6;
+    string deleted_at = 7;
+}
+
+message GetListStudentTaskRequest {
+    uint64 page = 1;
+    uint64 limit = 2;
+    string search = 3;
+}
+
+message GetListStudentTaskResponse {
+    int64 count = 1;
+    repeated StudentTask studentTasks = 2;
+}

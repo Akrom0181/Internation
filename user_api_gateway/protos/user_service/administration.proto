@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+option go_package = "genproto/user_service";
+
+package user_service;
+
+service AdministrationService {
+    rpc Create(CreateAdministration) returns (Administration) {}
+    rpc GetByID(AdministrationPrimaryKey) returns (Administration) {}
+    rpc GetList(GetListAdministrationRequest) returns (GetListAdministrationResponse) {}
+    rpc Update(UpdateAdministration) returns (Administration) {}
+    rpc Delete(AdministrationPrimaryKey) returns (EmptyAdmin) {}
+    rpc GetReportList(GetReportListAdministrationRequest) returns (GetReportListAdministrationResponse) {}
+
+}
+
+message EmptyAdmin {}
+
+message AdministrationPrimaryKey {
+    string id = 1;
+}
+
+message CreateAdministration {
+    string login = 1;
+    string fullname = 2;
+    string phone = 3;
+    string password = 4;
+    int32  salary = 5;
+    float  ieltsScore = 6;
+    string branchId = 7;
+}
+
+message Administration {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    string password = 5;
+    int32  salary = 6;
+    float  ieltsScore = 7;
+    string branchId = 8;
+    string created_at = 9;
+    string updated_at = 10;
+    int32  deleted_at = 11;
+}
+
+message UpdateAdministration {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    string password = 5;
+    int32  salary = 6;
+    float  ieltsScore = 7;
+    string branchId = 8;
+}
+
+message GetAdministration {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    string password = 5;
+    int32  salary = 6;
+    float  ieltsScore = 7;
+    string branchId = 8;
+    string created_at = 9;
+    string updated_at = 10;
+    int32  deleted_at = 11;
+}
+
+message GetListAdministrationRequest {
+    uint64 page = 1;
+    uint64 limit = 2;
+    string search = 3;
+}
+
+message GetListAdministrationResponse {
+    int64 count = 1;
+    repeated Administration administrations = 2;
+}
+
+message GetReportListAdministrationResponse {
+    int64 count = 1;
+    repeated GetReportAdministrationResponse Getadministrations = 2;
+}
+
+message GetReportAdministrationResponse {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    int64 salary = 5;
+    float ielts_score = 6;
+    string branch_id = 7;
+    string created_at = 8;
+    string updated_at = 9;
+    string deleted_at = 10;
+    string password =11;
+    string totalsum=12;
+}
+
+message AdministrationEmpty {
+    string msg =1;
+}
+
+message GetReportListAdministrationRequest {
+    int64 page = 1;
+    int64 limit = 2;
+    string search = 3;
+}

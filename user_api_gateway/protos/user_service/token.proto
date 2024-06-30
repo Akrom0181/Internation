@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "genproto/user_service";
+
+package user_service;
+
+service LoginService {
+    rpc AdministarationLogin(LoginPasswors) returns (Token) {}
+    rpc ManagerLogin(LoginPasswors) returns (Token) {}
+    rpc StudentLogin(LoginPasswors) returns (Token) {}
+    rpc SupportTeacherLogin(LoginPasswors) returns (Token) {}
+    rpc TeacherLogin(LoginPasswors) returns (Token) {}
+    rpc SuperAdminLogin(LoginPasswors) returns (Token) {}
+}
+message LoginPasswors {
+    string login = 1;
+    string password = 2;
+}
+
+message Token{
+    string AccessToken= 1;
+    string RefreshToken= 2;
+}

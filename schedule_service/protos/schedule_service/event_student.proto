@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+option go_package = "genproto/schedule_service";
+
+package schedule_service;
+
+service EventStudentService {
+    rpc Create(CreateEventStudent) returns (GetEventStudent) {}
+    rpc GetByID(EventStudentPrimaryKey) returns (GetEventStudent) {}
+    rpc GetList(GetListEventStudentRequest) returns (GetListEventStudentResponse) {}
+    rpc Update(UpdateEventStudent) returns (GetEventStudent) {}
+    rpc Delete(EventStudentPrimaryKey) returns (EmptyEventStudent) {}
+    rpc GetStudentByID(EventStudentPrimaryKey) returns (GetStudentWithEventsResponse) {}
+}
+
+message EmptyEventStudent {}
+
+message EventStudentPrimaryKey {
+    string id = 1;
+}
+
+message CreateEventStudent {
+    string eventId = 2;
+    string studentId = 3;
+}
+
+message EventStudent {
+    string id = 1;
+    string eventId = 2;
+    string studentId = 3;
+    string created_at = 4;
+    string updated_at = 5;
+    int32 deleted_at = 6;
+}
+
+message GetEventStudent {
+    string id = 1;
+    string eventId = 2;
+    string studentId = 3;
+    string created_at = 4;
+    string updated_at = 5;
+    int32 deleted_at = 6;
+}
+
+message UpdateEventStudent {
+    string id = 1;
+    string eventId = 2;
+    string studentId = 3;
+}
+
+message GetListEventStudentRequest {
+    uint64 page = 1;
+    uint64 limit = 2;
+    string search = 3;
+}
+
+message GetListEventStudentResponse {
+    int64 count = 1;
+    repeated EventStudent eventStudents = 2;
+}
+
+message GetStudentWithEventsResponse {
+    string id = 1;
+    string name = 2;
+    string phone = 3;
+    repeated EventStudentResponse events = 4;
+}
+
+message EventStudentResponse {
+    string id = 1;
+    string eventId = 2;
+    string studentId = 3;
+    string created_at = 4;
+    string updated_at = 5;
+    string deleted_at = 6;
+    string assignStudent = 7;
+    string topic = 8;
+    string startTime = 9;
+    string date = 10;
+    string branchId = 11;
+}
+
+message EventDetails {
+    string id = 1;
+    string assignStudent = 2;
+    string topic = 3;
+    string startTime = 4;
+    string date = 5;
+    string branchId = 6;
+    string created_at = 7;
+    string updated_at = 8;
+    string deleted_at = 9;
+}

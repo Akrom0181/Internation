@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+option go_package = "genproto/user_service";
+
+package user_service;
+
+service StudentService {
+    rpc Create(CreateStudent) returns (Student) {}
+    rpc GetByID(StudentPrimaryKey) returns (Student) {}
+    rpc GetList(GetListStudentRequest) returns (GetListStudentResponse) {}
+    rpc Update(UpdateStudent) returns (Student) {}
+    rpc Delete(StudentPrimaryKey) returns (StudentEmpty) {}
+    rpc GetReportList(GetReportListStudentRequest) returns (GetReportListStudentResponse) {}
+}
+
+message StudentEmpty{}
+
+message StudentPrimaryKey {
+    string id = 1;
+}
+
+message CreateStudent {
+    string login = 1;
+    string fullname = 2;
+    string phone = 3;
+    string password = 4;
+    string groupName = 5;
+    string branchId = 6;
+}
+
+message Student {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    string password = 5;
+    string groupName = 6;
+    string branchId = 7;
+    string created_at = 8;
+    string updated_at = 9;
+    int32 deleted_at = 10;
+}
+
+message UpdateStudent {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    string password = 5;
+    string groupName = 6;
+    string branchId = 7;
+}
+
+message GetStudent {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    string password = 5;
+    string groupName = 6;
+    string branchId = 7;
+    string created_at = 8;
+    string updated_at = 9;
+    int32 deleted_at = 10;
+}
+
+message GetListStudentRequest {
+    uint64 page = 1;
+    uint64 limit = 2;
+    string search = 3;
+}
+
+message GetListStudentResponse {
+    int64 count = 1;
+    repeated Student students = 2;
+}
+
+message GetReportListStudentResponse {
+    int64 Count = 1;
+    repeated GetReportStudentResponse students = 2;
+}
+
+message GetReportListStudentRequest {
+    int64 page = 1;
+    int64 limit = 2;
+    string search = 3;
+}
+
+message GetReportStudentResponse {
+    string id = 1;
+    string login = 2;
+    string fullname = 3;
+    string phone = 4;
+    string password = 5;
+    string groupName = 6;
+    string branchId = 7;
+    string created_at = 8;
+    string updated_at = 9;
+    string deleted_at = 10;
+    string paidsum=11;
+}

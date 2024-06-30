@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+option go_package = "genproto/schedule_service";
+
+package schedule_service;
+
+service JournalService {
+    rpc Create(CreateJournal) returns (GetJournal) {}
+    rpc GetByID(JournalPrimaryKey) returns (GetJournal) {}
+    rpc GetList(GetListJournalRequest) returns (GetListJournalResponse) {}
+    rpc Update(UpdateJournal) returns (GetJournal) {}
+    rpc Delete(JournalPrimaryKey) returns (EmptyJournal) {}
+    rpc GetByIDStudent(JournalPrimaryKey) returns (GetJournal) {}
+}
+
+message EmptyJournal {}
+
+message JournalPrimaryKey {
+    string id = 1;
+}
+
+message CreateJournal {
+    string fromDate = 2;
+    string toDate = 3;
+    string groupId = 4;
+    int32  studentsCount = 5;
+}
+
+message Journal {
+    string id = 1;
+    string fromDate = 2;
+    string toDate = 3;
+    string groupId = 4;
+    int32  studentsCount = 5;
+    string created_at = 6;
+    string updated_at = 7;
+    int32  deleted_at = 8;
+}
+
+message GetJournal {
+    string id = 1;
+    string fromDate = 2;
+    string toDate = 3;
+    string groupId = 4;
+    int32  studentsCount = 5;
+    string created_at = 6;
+    string updated_at = 7;
+    int32  deleted_at = 8;
+}
+
+message UpdateJournal {
+    string id = 1;
+    string fromDate = 2;
+    string toDate = 3;
+    string groupId = 4;
+    int32  studentsCount = 5;
+}
+
+message GetListJournalRequest {
+    uint64 page = 1;
+    uint64 limit = 2;
+    string search = 3;
+}
+
+message GetListJournalResponse {
+    int64 count = 1;
+    repeated Journal journals = 2;
+}
